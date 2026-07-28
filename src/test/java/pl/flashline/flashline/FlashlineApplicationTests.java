@@ -1,0 +1,13 @@
+package pl.flashline.flashline;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class FlashlineApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}
