@@ -1,4 +1,4 @@
-package pl.flashline.flashline;
+package pl.flashline;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
