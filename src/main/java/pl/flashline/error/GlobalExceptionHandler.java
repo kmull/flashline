@@ -8,6 +8,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import pl.flashline.auth.EmailAlreadyTakenException;
+import pl.flashline.deck.DeckNotFoundException;
 
 import java.util.stream.Collectors;
 
@@ -24,6 +25,12 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ApiError> handleBadCredentials(BadCredentialsException ex) {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                 .body(new ApiError("Nieprawidłowy email lub hasło"));
+    }
+
+    @ExceptionHandler(DeckNotFoundException.class)
+    public ResponseEntity<ApiError> handleDeckNotFound(DeckNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(new ApiError(ex.getMessage()));
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
