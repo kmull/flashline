@@ -23,9 +23,13 @@ public class Deck {
 
     private String category;
 
+    @Embedded
+    private AlgorithmSettings algorithmSettings = AlgorithmSettings.defaults();
+
     public Deck(Long userId, String name, String category) {
         this.userId = userId;
         this.name = name;
         this.category = category;
+        this.algorithmSettings = AlgorithmSettings.defaults();
     }
 }

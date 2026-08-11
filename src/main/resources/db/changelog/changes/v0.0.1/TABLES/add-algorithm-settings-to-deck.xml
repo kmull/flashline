@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.31.xsd">
+    
+    <changeSet id="add-algorithm-settings-to-deck" author="KM">
+        <addColumn tableName="deck">
+            <column name="first_interval_days" type="INT" defaultValueNumeric="1">
+                <constraints nullable="false"/>
+            </column>
+            <column name="second_interval_days" type="INT" defaultValueNumeric="6">
+                <constraints nullable="false"/>
+            </column>
+            <column name="initial_ease_factor" type="DOUBLE" defaultValueNumeric="2.5">
+                <constraints nullable="false"/>
+            </column>
+            <column name="min_ease_factor" type="DOUBLE" defaultValueNumeric="1.3">
+                <constraints nullable="false"/>
+            </column>
+            <column name="good_quality_threshold" type="INT" defaultValueNumeric="4">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    
+    
+</databaseChangeLog>

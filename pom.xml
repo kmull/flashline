@@ -43,6 +43,14 @@
             <version>42.7.13</version>
             <scope>runtime</scope>
         </dependency>
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-liquibase</artifactId>
+        </dependency>
 
         <!-- Bezpieczeństwo -->
         <dependency>

@@ -8,7 +8,9 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import pl.flashline.auth.EmailAlreadyTakenException;
+import pl.flashline.card.CardNotFoundException;
 import pl.flashline.deck.DeckNotFoundException;
+import tools.jackson.core.JacksonException;
 
 import java.util.stream.Collectors;
 
@@ -29,6 +31,18 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(DeckNotFoundException.class)
     public ResponseEntity<ApiError> handleDeckNotFound(DeckNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(new ApiError(ex.getMessage()));
+    }
+
+    @ExceptionHandler(JacksonException.class)
+    public ResponseEntity<ApiError> handleJacksonError(JacksonException ex) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(new ApiError("Błąd przetwarzania danych karty"));
+    }
+
+    @ExceptionHandler(CardNotFoundException.class)
+    public ResponseEntity<ApiError> handleCardNotFound(CardNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(new ApiError(ex.getMessage()));
     }
