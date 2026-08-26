@@ -18,6 +18,9 @@
             </column>
             <column name="category" type="VARCHAR(255)"/>
         </createTable>
+        <createIndex indexName="idx_deck_user_id" tableName="deck">
+            <column name="user_id"/>
+        </createIndex>
     </changeSet>
 
 </databaseChangeLog>

@@ -19,6 +19,10 @@ public record CreateCardRequest(
 
         String audioUrl,
 
+        // Opcjonalne — zalety/wady/zagrożenia/przykłady, głównie dla kart
+        // technicznych generowanych ze słowniczka, nie dla prostego słownictwa.
+        String extendedInfo,
+
         CefrLevel level
 ) {
 }

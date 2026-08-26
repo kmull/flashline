@@ -39,7 +39,18 @@
             <column name="next_review_date" type="DATE">
                 <constraints nullable="false"/>
             </column>
+            <column name="extended_info" type="TEXT"/>
         </createTable>
+
+        <createIndex indexName="idx_card_deck_id" tableName="card">
+            <column name="deck_id"/>
+        </createIndex>
+        <createIndex indexName="idx_card_next_review_date" tableName="card">
+            <column name="next_review_date"/>
+        </createIndex>
+        <createIndex indexName="idx_card_source_text_id" tableName="card">
+            <column name="source_text_id"/>
+        </createIndex>
     </changeSet>
 
 </databaseChangeLog>

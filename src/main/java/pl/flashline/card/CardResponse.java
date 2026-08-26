@@ -11,6 +11,7 @@ public record CardResponse(
         String question,
         CardContent content,
         String audioUrl,
+        String extendedInfo,
         CefrLevel level,
         LocalDate nextReviewDate
 ) {

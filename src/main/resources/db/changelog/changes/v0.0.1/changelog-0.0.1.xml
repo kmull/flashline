@@ -10,7 +10,8 @@
     <include file="db/changelog/changes/v0.0.1/TABLES/add-algorithm-settings-to-deck.xml"
              relativeToChangelogFile="false"/>
     <include file="db/changelog/changes/v0.0.1/TABLES/create-card.xml" relativeToChangelogFile="false"/>
+    <include file="db/changelog/changes/v0.0.1/TABLES/create-source-text.xml" relativeToChangelogFile="false"/>
 
-    <include file="db/changelog/changes/v0.0.1/INDEXES/add-card-indexes.xml" relativeToChangelogFile="false"/>
+<!--    <include file="db/changelog/changes/v0.0.1/INDEXES/add-card-indexes.xml" relativeToChangelogFile="false"/>-->
 
 </databaseChangeLog>

@@ -45,6 +45,11 @@ public class Card {
 
     private String audioUrl;
 
+    // Opcjonalny, rozszerzony opis — zalety/wady/zagrożenia/przykłady, pokazywany
+    // po kliknięciu "Pokaż więcej" w panelu review. Niezależny od CardContent
+    // (nie umieszczony w GapBasedContent), bo dotyczy każdego typu karty jednakowo.
+    private String extendedInfo;
+
     @Enumerated(EnumType.STRING)
     private CefrLevel level;
 
@@ -72,7 +77,7 @@ public class Card {
     @Builder
     private Card(Long deckId, Long sourceTextId, CardType type, AnswerMode suggestedMode,
                  String category, String question, String contentJson, String audioUrl,
-                 CefrLevel level, double initialEaseFactor) {
+                 String extendedInfo, CefrLevel level, double initialEaseFactor) {
         this.deckId = deckId;
         this.sourceTextId = sourceTextId;
         this.type = type;
@@ -81,6 +86,7 @@ public class Card {
         this.question = question;
         this.contentJson = contentJson;
         this.audioUrl = audioUrl;
+        this.extendedInfo = extendedInfo;
         this.level = level;
         this.easeFactor = initialEaseFactor;
         this.intervalDays = 0;

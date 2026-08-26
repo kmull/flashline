@@ -2,6 +2,7 @@ package pl.flashline.card;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.flashline.deck.Deck;
 import pl.flashline.deck.DeckNotFoundException;
 import pl.flashline.deck.DeckRepository;
@@ -40,6 +41,7 @@ public class CardService {
                 .question(request.question())
                 .contentJson(json)
                 .audioUrl(request.audioUrl())
+                .extendedInfo(request.extendedInfo())
                 .level(request.level())
                 .initialEaseFactor(initialEase)
                 .build();
@@ -55,6 +57,32 @@ public class CardService {
                 .orElseThrow(() -> new CardNotFoundException(cardId));
 
         return cardMapper.toResponse(card);
+    }
+
+    @Transactional
+    public List<CardResponse> createCards(Long deckId, BatchCreateCardsRequest request) {
+        Deck deck = getOwnedDeck(deckId);
+        double initialEase = deck.getAlgorithmSettings().getInitialEaseFactor();
+
+        return request.cards().stream()
+                .map(cardRequest -> {
+                    Card card = Card.builder()
+                            .deckId(deck.getId())
+                            .type(cardRequest.type())
+                            .suggestedMode(cardRequest.suggestedMode())
+                            .category(cardRequest.category())
+                            .question(cardRequest.question())
+                            .contentJson(cardContentSerializer.toJson(cardRequest.content()))
+                            .audioUrl(cardRequest.audioUrl())
+                            .extendedInfo(cardRequest.extendedInfo())
+                            .level(cardRequest.level())
+                            .initialEaseFactor(initialEase)
+                            .build();
+
+                    Card saved = cardRepository.save(card);
+                    return cardMapper.toResponse(saved);
+                })
+                .toList();
     }
 
     public CardResponse getCardOwnedByOwnerUser(Long cardId, Long deckId) {

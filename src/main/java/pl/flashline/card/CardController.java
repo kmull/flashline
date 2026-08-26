@@ -39,4 +39,12 @@ public class CardController {
         return ResponseEntity.ok(cardService.getCard(deckId, cardId));
     }
 
+    @PostMapping("/batch")
+    @Operation(summary = "Import wielu kart naraz (JSON wygenerowany przez AI)")
+    public ResponseEntity<List<CardResponse>> createCards(
+            @PathVariable Long deckId,
+            @Valid @RequestBody BatchCreateCardsRequest request) {
+        return ResponseEntity.ok(cardService.createCards(deckId, request));
+    }
+
 }
